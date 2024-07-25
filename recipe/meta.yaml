@@ -21,9 +21,9 @@ requirements:
     - pkg-config
   host:
     - python
-    - libxml2 2.10
-    - libxmlsec1 1.2.32
-    - lxml 4.9.2
+    - libxml2 {{ libxml2 }}
+    - libxmlsec1 1.3.5
+    - lxml 5.2.1
     - pip
     - pkgconfig
     - setuptools
