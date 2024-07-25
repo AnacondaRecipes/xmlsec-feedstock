@@ -1,1 +1,6 @@
 aggregate_branch: libxml_2.13.1
+
+channels:
+  - https://staging.continuum.io/prefect/fs/libxmlsec1-feedstock/pr6/e95085f
+  - https://staging.continuum.io/prefect/fs/libxslt-feedstock/pr4/9bb69e4
+  - https://staging.continuum.io/prefect/fs/lxml-feedstock/pr13/cfbc30b
