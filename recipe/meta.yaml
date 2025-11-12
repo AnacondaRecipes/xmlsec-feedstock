@@ -13,7 +13,7 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: true  # [py<39]
-  # libxmlsec1 is not in the main channel for Windows:
+  # libxmlsec1 is not in the main channel for Windows
   skip: true  # [win]
 
 requirements:
