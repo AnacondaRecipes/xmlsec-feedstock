@@ -37,6 +37,7 @@ requirements:
     # https://github.com/xmlsec/python-xmlsec/blob/master/requirements.txt#L1
     - lxml ==6.0.2
 
+# Issue created: https://github.com/xmlsec/python-xmlsec/issues/400
 {% set ignore_tests = "" %}
 # Segmentation fault on line 24 test_constants.py
 # assert str(transform) == f'{transform.name}, {transform.href}'
