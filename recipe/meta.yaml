@@ -32,6 +32,8 @@ requirements:
   run:
     - python
     - lxml >=3.8.0,!=4.7.0
+    - libxmlsec1 >=1.2.33
+    - libxml2 >=2.9.1
 
 test:
   source_files:
@@ -40,10 +42,10 @@ test:
     - xmlsec
   commands:
     - pip check
-    - pytest -vvv tests -n 1
+    - pytest -vvv tests
   requires:
     - pip
-    - pytest
+    - pytest <7
 
 about:
   home: https://github.com/mehcode/python-xmlsec
