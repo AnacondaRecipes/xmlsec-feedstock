@@ -40,7 +40,7 @@ test:
     - xmlsec
   commands:
     - pip check
-    - pytest -v tests
+    - pytest -vvv tests -n 1
   requires:
     - pip
     - pytest
