@@ -27,7 +27,7 @@ requirements:
     - setuptools_scm >=3.4
     - toml
     - pkgconfig >=1.5.1
-    # Used the same as in the requirements.txt
+    # Used the same as in the requirements.txt and it was used for tests in the upstream -> https://github.com/xmlsec/python-xmlsec/actions/runs/19269549253/job/55093915102#step:5:21
     - lxml ==6.0.2
     # From readme -> https://github.com/xmlsec/python-xmlsec/blob/1.3.17/README.md#requirements
     - libxml2 >=2.9.1
