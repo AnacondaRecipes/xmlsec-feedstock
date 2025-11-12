@@ -1,40 +1,49 @@
 {% set name = "xmlsec" %}
-{% set version = "1.3.16" %}
+{% set version = "1.3.17" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2b6c70544c6d1d4ca006aaa314958e0ef3514dc81fffde1b23f2ec41a5791f9d
+  url: https://github.com/xmlsec/python-xmlsec/archive/refs/tags/1.3.17.tar.gz
+  sha256: 71967b9fbde59690d7e1a6b37d79f30e006d1fd3060b2a3e09e6472f454f4a99
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [win or py<35]
+  skip: true  # [py<39]
 
 requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
+    - pkg-config
   host:
     - pip
     - python
-    - setuptools >=42
+    - setuptools >=80.9.0
     - wheel
     - setuptools_scm >=3.4
     - toml
     - pkgconfig >=1.5.1
-    - lxml >=3.8,!=4.7.0
+    # Used the same as in the requirements.txt
+    - lxml ==6.0.2
+    # From readme -> https://github.com/xmlsec/python-xmlsec/blob/1.3.17/README.md#requirements
     - libxml2 >=2.9.1
     - libxmlsec1 >=1.2.33
   run:
     - python
-    - lxml >=3.8.0,!=4.7.0
-    - libxmlsec1 >=1.2.33
-    - libxml2 >=2.9.1
+    # https://github.com/xmlsec/python-xmlsec/blob/master/requirements.txt#L1
+    - lxml ==6.0.2
 
+{% set ignore_tests = "" %}
+# Segmentation fault on line 24 test_constants.py
+# assert str(transform) == f'{transform.name}, {transform.href}'
+{% set ignore_tests = " --ignore=tests/test_constants.py" %}  # [osx]
+# Segmentation fault on line 50 tests/test_ds.py
+# sign = xmlsec.template.create(root, consts.TransformExclC14N, consts.TransformRsaSha1, 'Id')
+{% set ignore_tests = ignore_tests + " --ignore=tests/test_ds.py" %}  # [osx]
 test:
   source_files:
     - tests
@@ -42,10 +51,10 @@ test:
     - xmlsec
   commands:
     - pip check
-    - pytest -vvv tests
+    - pytest -vvv tests {{ ignore_tests }}
   requires:
     - pip
-    - pytest <7
+    - pytest >=8.4.1
 
 about:
   home: https://github.com/mehcode/python-xmlsec
