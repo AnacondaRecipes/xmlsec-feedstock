@@ -1,13 +1,13 @@
 {% set name = "xmlsec" %}
-{% set version = "1.3.14" %}
+{% set version = "1.3.16" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 934f804f2f895bcdb86f1eaee236b661013560ee69ec108d29cdd6e5f292a2d9
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 2b6c70544c6d1d4ca006aaa314958e0ef3514dc81fffde1b23f2ec41a5791f9d
 
 build:
   number: 0
@@ -42,7 +42,7 @@ test:
   commands:
     - pip check
     # Check that the correct version is reported by pip
-    - "pip list --format json | grep '{\"name\": \"xmlsec\", \"version\": \"{{ version }}\"}'"
+    - pip list --format json | grep '{"name": "xmlsec", "version": "{{ version }}"}'
 
 about:
   home: https://github.com/mehcode/python-xmlsec
