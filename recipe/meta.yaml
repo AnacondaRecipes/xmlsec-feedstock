@@ -22,17 +22,17 @@ requirements:
   host:
     - python
     - libxml2 {{ libxml2 }}
-    - libxmlsec1
-    - lxml
+    - libxmlsec1 1.3.5
+    - lxml 6.0.2
     - pip
-    - pkgconfig
-    - setuptools
-    - setuptools_scm
+    - pkgconfig >=1.5.1
+    - setuptools 80.9.0
+    - setuptools_scm >=3.4
     - toml
     - wheel
   run:
     - python
-    - lxml >=3.8.0
+    - lxml >=6.0.2
 
 test:
   imports:
