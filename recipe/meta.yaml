@@ -36,14 +36,18 @@ requirements:
     - lxml >=3.8.0
 
 test:
+  source_files:
+    - tests
   imports:
     - xmlsec
   requires:
     - pip
+    - pytest >=8.4.1
   commands:
     - pip check
     # Check that the correct version is reported by pip
     - "pip list --format json | grep '{\"name\": \"xmlsec\", \"version\": \"{{ version }}\"}'"
+    - pytest -vvv tests
 
 about:
   home: https://github.com/mehcode/python-xmlsec
