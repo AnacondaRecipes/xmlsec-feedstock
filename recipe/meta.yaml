@@ -8,6 +8,10 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f3fac9ae679f66585925cc00c5f6839ae36c1d03157619571dee18acc05b9c01
+  patches:
+    # Patch: skip xmlSecCryptoAppShutdown() in xmlsec.shutdown() to prevent segfault on re-initialization.
+    # OPENSSL_cleanup() called internally is irreversible in OpenSSL 3.x; OpenSSL cleans up automatically on exit via atexit().
+    - 0001-guard-reinit.patch
 
 build:
   number: 0
