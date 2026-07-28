@@ -10,9 +10,8 @@ source:
   sha256: f3fac9ae679f66585925cc00c5f6839ae36c1d03157619571dee18acc05b9c01
 
 build:
-  number: 0
-  # Skip s390x because of missing libxmlsec1, libgpg-error and libgcrypt
-  skip: true  # [(linux and s390x) or win or py<35]
+  number: 1
+  skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
@@ -23,8 +22,8 @@ requirements:
   host:
     - python
     - libxml2 {{ libxml2 }}
-    - libxmlsec1 1.3.11
-    - lxml 6.1.0
+    - libxmlsec1 {{ libxmlsec1 }}
+    - lxml 6.1.1
     - pip
     - pkgconfig
     - setuptools
