@@ -11,8 +11,7 @@ source:
 
 build:
   number: 1
-  # Skip s390x because of missing libxmlsec1, libgpg-error and libgcrypt
-  skip: true  # [(linux and s390x) or win or py<35]
+  skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
